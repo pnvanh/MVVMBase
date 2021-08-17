@@ -12,12 +12,23 @@ class MovieViewModel {
     
     private var apiService = APIService()
     private var discoverMovies = [Movie]()
-    
+
     func fetchDiscoverMovies(completion: @escaping () -> ()) {
         apiService.getMovie(apiKey: "328c283cd27bd1877d9080ccb1604c91", page: 1) { (result) in
             switch result {
             case .success(let list):
                 self.discoverMovies = list.movies
+                completion()
+            case .failure(let error):
+                print("Error processing json data: \(error)")
+            }
+        }
+    }
+    func fetchDiscoverMoviesPagination(pageNumber: Int,completion: @escaping () -> ()) {
+        apiService.getMovie(apiKey: "328c283cd27bd1877d9080ccb1604c91", page: pageNumber) { (result) in
+            switch result {
+            case .success(let list):
+                self.discoverMovies.append(contentsOf: list.movies)
                 completion()
             case .failure(let error):
                 print("Error processing json data: \(error)")
@@ -33,5 +44,8 @@ class MovieViewModel {
     
     func cellForRowAt (indexPath: IndexPath) -> Movie {
         return discoverMovies[indexPath.row]
+    }
+    func countRow(indexPath: IndexPath) -> Int {
+        return  discoverMovies.count
     }
 }

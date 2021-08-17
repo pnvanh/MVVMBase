@@ -95,7 +95,8 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="IOb-En-mzH" firstAttribute="height" secondItem="blX-ga-EQY" secondAttribute="height" multiplier="0.1" id="3bf-lK-Oti"/>
-                                            <constraint firstItem="gOL-xz-TqN" firstAttribute="height" secondItem="blX-ga-EQY" secondAttribute="height" multiplier="0.6" id="KgB-nC-U0H"/>
+                                            <constraint firstItem="gOL-xz-TqN" firstAttribute="height" relation="greaterThanOrEqual" secondItem="blX-ga-EQY" secondAttribute="height" multiplier="0.6" id="KgB-nC-U0H"/>
+                                            <constraint firstItem="f28-kp-fah" firstAttribute="height" secondItem="blX-ga-EQY" secondAttribute="height" multiplier="0.2" id="P3o-s6-9qs"/>
                                             <constraint firstItem="pX9-wd-8dZ" firstAttribute="height" secondItem="blX-ga-EQY" secondAttribute="height" multiplier="0.1" id="y4v-0y-r4K"/>
                                         </constraints>
                                     </stackView>
