@@ -12,9 +12,9 @@ class MovieViewModel {
     
     private var apiService = APIService()
     private var discoverMovies = [Movie]()
-
+    
     func fetchDiscoverMovies(completion: @escaping () -> ()) {
-        apiService.getMovie(apiKey: "328c283cd27bd1877d9080ccb1604c91", page: 1) { (result) in
+        apiService.getMovie(apiKey: KEY.apiKey, page: 1) { (result) in
             switch result {
             case .success(let list):
                 self.discoverMovies = list.movies
@@ -25,7 +25,7 @@ class MovieViewModel {
         }
     }
     func fetchDiscoverMoviesPagination(pageNumber: Int,completion: @escaping () -> ()) {
-        apiService.getMovie(apiKey: "328c283cd27bd1877d9080ccb1604c91", page: pageNumber) { (result) in
+        apiService.getMovie(apiKey: KEY.apiKey, page: pageNumber) { (result) in
             switch result {
             case .success(let list):
                 self.discoverMovies.append(contentsOf: list.movies)

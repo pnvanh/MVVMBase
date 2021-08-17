@@ -11,18 +11,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var movieTableView: UITableView!
     private var viewModel = MovieViewModel()
+    let searchController = UISearchController()
     let refreshControl = UIRefreshControl()
     var pageNumber = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         self.movieTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.movieTableView.rowHeight = 150
-        
         loadMovide()
-        // Do any additional setup after loading the view.
-        
+        //pull to refresh
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.movieTableView.addSubview(refreshControl) 
+        self.movieTableView.addSubview(refreshControl)
+        
+        navigationItem.searchController = searchController
+       
     }
     func loadMovide() {
         viewModel.fetchDiscoverMovies{

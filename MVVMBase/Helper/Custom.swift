@@ -65,6 +65,7 @@ extension String {
         }
         return fixDate
     }
+    
 
 }
 struct LanguageHelper {
@@ -72,4 +73,7 @@ struct LanguageHelper {
         let locale: NSLocale? = NSLocale(localeIdentifier: "en")
         return locale?.displayName(forKey: .identifier, value: code)
     }
+}
+struct KEY {
+    static let apiKey = "328c283cd27bd1877d9080ccb1604c91"
 }
