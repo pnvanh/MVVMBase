@@ -126,6 +126,15 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		24343F1E26CBAA45005882A1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				24343F1C26CB6FAB005882A1 /* DetailVC.swift */,
+				24C9002626CA5F28006B194A /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		24C9001626CA5F28006B194A = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +160,7 @@
 		24C9002126CA5F28006B194A /* MVVMBase */ = {
 			isa = PBXGroup;
 			children = (
+				24343F1E26CBAA45005882A1 /* Controller */,
 				241E64E726CB65D1008C0282 /* Helper */,
 				24C9005C26CA666C006B194A /* Networking */,
 				24C9005626CA649D006B194A /* View */,
@@ -158,12 +168,10 @@
 				24C9005226CA6300006B194A /* Model */,
 				24C9002226CA5F28006B194A /* AppDelegate.swift */,
 				24C9002426CA5F28006B194A /* SceneDelegate.swift */,
-				24C9002626CA5F28006B194A /* ViewController.swift */,
 				24C9002826CA5F28006B194A /* Main.storyboard */,
 				24C9002B26CA5F2B006B194A /* Assets.xcassets */,
 				24C9002D26CA5F2B006B194A /* LaunchScreen.storyboard */,
 				24C9003026CA5F2B006B194A /* Info.plist */,
-				24343F1C26CB6FAB005882A1 /* DetailVC.swift */,
 			);
 			path = MVVMBase;
 			sourceTree = "<group>";

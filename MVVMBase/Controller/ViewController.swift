@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var movieTableView: UITableView!
     private var viewModel = MovieViewModel()
+    let refreshControl = UIRefreshControl()
     var pageNumber = 1
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,9 @@ class ViewController: UIViewController {
         
         loadMovide()
         // Do any additional setup after loading the view.
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.movieTableView.addSubview(refreshControl) 
     }
     func loadMovide() {
         viewModel.fetchDiscoverMovies{
@@ -27,6 +31,13 @@ class ViewController: UIViewController {
             self.movieTableView.reloadData()
         }
     }
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        print("refresh!")
+        loadMovide()
+        refreshControl.endRefreshing()
+    }
+    
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +57,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieCell
         let lastItem = viewModel.countRow(indexPath: indexPath) - 1
         if indexPath.row == lastItem {
             print(self.pageNumber)
@@ -55,14 +65,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             spinner.startAnimating()
             spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
             self.movieTableView.tableFooterView = spinner
-            self.movieTableView.tableFooterView?.isHidden = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.viewModel.fetchDiscoverMoviesPagination(pageNumber: self.pageNumber) {
-                    self.movieTableView.reloadData()
-                }
-            }
-           
+//            self.movieTableView.tableFooterView?.isHidden = false
+            loadPageView()
         }
-       
+    }
+    func loadPageView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.viewModel.fetchDiscoverMoviesPagination(pageNumber: self.pageNumber) {
+                self.movieTableView.reloadData()
+            }
+        }
     }
 }

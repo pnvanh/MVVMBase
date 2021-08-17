@@ -65,4 +65,11 @@ extension String {
         }
         return fixDate
     }
+
+}
+struct LanguageHelper {
+    static func getLanguageString(code:String) -> String? {
+        let locale: NSLocale? = NSLocale(localeIdentifier: "en")
+        return locale?.displayName(forKey: .identifier, value: code)
+    }
 }

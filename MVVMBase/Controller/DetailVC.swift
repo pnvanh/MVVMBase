@@ -16,6 +16,7 @@ class DetailVC: UIViewController {
     @IBOutlet weak var relaseDate: UILabel!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var movieLanguage: UILabel!
     var movie: Movie?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,14 @@ class DetailVC: UIViewController {
         rating.text = String(self.movie!.voteAverage)
         relaseDate.text = self.movie!.releaseDate.convertDateFormater(movie?.releaseDate)
         descriptonMovie.text = self.movie?.overview
+        movieLanguage.text = "Language: \( LanguageHelper.getLanguageString(code: self.movie!.originalLanguage) ?? "")"
         guard let imageString = movie?.posterPath else {return}
         let urlString = "https://image.tmdb.org/t/p/w300" + imageString
         self.movieImage.downloadImage(with: urlString)
+    }
+    @IBAction func bookMovie(_ sender: Any) {
+        if let requestUrl = URL(string: "https://www.cathaycineplexes.com.sg/movies/") {
+            UIApplication.shared.open(requestUrl, options: [:], completionHandler: nil)
+        }
     }
 }
