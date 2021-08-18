@@ -11,25 +11,28 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var movieTableView: UITableView!
     private var viewModel = MovieViewModel()
-    let searchController = UISearchController()
+    let searchController = UISearchController(searchResultsController: nil)
     let refreshControl = UIRefreshControl()
     var pageNumber = 1
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        loadMovide()
+    }
+    func setupView() {
         self.movieTableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "cell")
         self.movieTableView.rowHeight = 150
-        loadMovide()
+        self.movieTableView.dataSource = self
+        self.movieTableView.delegate = self
         //pull to refresh
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.movieTableView.addSubview(refreshControl)
         
         navigationItem.searchController = searchController
-       
+        searchController.searchResultsUpdater = self
     }
     func loadMovide() {
         viewModel.fetchDiscoverMovies{
-            self.movieTableView.dataSource = self
-            self.movieTableView.delegate = self
             self.movieTableView.reloadData()
         }
     }
@@ -67,7 +70,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             spinner.startAnimating()
             spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
             self.movieTableView.tableFooterView = spinner
-//            self.movieTableView.tableFooterView?.isHidden = false
             loadPageView()
         }
     }
@@ -76,6 +78,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             self.viewModel.fetchDiscoverMoviesPagination(pageNumber: self.pageNumber) {
                 self.movieTableView.reloadData()
             }
+        }
+    }
+}
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else {
+            return
+        }
+        viewModel.searchMovies(searchText: searchText) {
+            self.movieTableView.reloadData()
         }
     }
 }

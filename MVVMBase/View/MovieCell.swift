@@ -34,7 +34,7 @@ class MovieCell: UITableViewCell {
         guard let rating = movieVote else {return}
         self.movieVote.text = String(rating)
         guard let imageString = movieImage else {return}
-        urlString = "https://image.tmdb.org/t/p/w300" + imageString
+        urlString = KEY.imagePath + imageString
         self.movieImage.downloadImage(with: urlString)
     }
 

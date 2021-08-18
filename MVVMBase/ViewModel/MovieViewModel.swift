@@ -24,6 +24,17 @@ class MovieViewModel {
             }
         }
     }
+    func searchMovies(searchText: String,completion: @escaping () -> ()) {
+        apiService.searchMovie(apiKey: KEY.apiKey, searchText: searchText) { (result) in
+            switch result {
+            case .success(let list):
+                self.discoverMovies = list.movies
+                completion()
+            case .failure(let error):
+                print("Error processing json data: \(error)")
+            }
+        }
+    }
     func fetchDiscoverMoviesPagination(pageNumber: Int,completion: @escaping () -> ()) {
         apiService.getMovie(apiKey: KEY.apiKey, page: pageNumber) { (result) in
             switch result {
