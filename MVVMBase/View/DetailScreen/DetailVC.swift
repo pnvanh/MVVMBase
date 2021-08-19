@@ -8,30 +8,45 @@
 import UIKit
 
 class DetailVC: UIViewController {
-
     
-    @IBOutlet weak var descriptonMovie: UILabel!
-    @IBOutlet weak var movieLanguage: UILabel!
-    @IBOutlet weak var relaseDate: UILabel!
-    @IBOutlet weak var rating: UILabel!
-    @IBOutlet weak var movieTitle: UILabel!
+    var movie: Movie?
+    
+    @IBOutlet weak var movieTitle: UILabel! {
+        didSet {
+            movieTitle.text = movie?.title
+        }
+    }
+    @IBOutlet weak var descriptonMovie: UILabel! {
+        didSet {
+            descriptonMovie.text = movie?.overview
+        }
+    }
+    @IBOutlet weak var movieLanguage: UILabel! {
+        didSet {
+            movieLanguage.text = "Language: \( LanguageHelper.getLanguageString(self.movie!.originalLanguage) ?? "")"
+        }
+    }
+    @IBOutlet weak var relaseDate: UILabel! {
+        didSet {
+            relaseDate.text = self.movie!.releaseDate.convertDateFormater(movie?.releaseDate)
+        }
+    }
+    @IBOutlet weak var rating: UILabel! {
+        didSet {
+            rating.text = String(self.movie!.voteAverage)
+        }
+    }
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var cardTag: UIView!
-    var movie: Movie?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        // Do any additional setup after loading the view.
     }
     func setupUI() {
         cardTag.layer.cornerRadius = 15
         cardTag.clipsToBounds = true
-        movieTitle.text = self.movie?.title
-        rating.text = String(self.movie!.voteAverage)
-        relaseDate.text = self.movie!.releaseDate.convertDateFormater(movie?.releaseDate)
-        descriptonMovie.text = self.movie?.overview
-        movieLanguage.text = "Language: \( LanguageHelper.getLanguageString(self.movie!.originalLanguage) ?? "")"
-        guard let imageString = movie?.posterPath else {return}
+
+        guard let imageString = movie?.posterPath else { return }
         let urlString = "https://image.tmdb.org/t/p/w300" + imageString
         self.movieImage.downloadImage(urlString)
     }

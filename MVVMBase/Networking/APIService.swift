@@ -26,7 +26,6 @@ class APIService {
                     }catch(let error){
                         print("Failed to load: \(error.localizedDescription)")
                     }
-                    
                 case .failure(let error):
                     print("error - > \n  \(error.localizedDescription) \n")
             }
@@ -46,7 +45,6 @@ class APIService {
                     }catch(let error){
                         print("Failed to load: \(error.localizedDescription)")
                     }
-                    
                 case .failure(let error):
                     print("error - > \n  \(error.localizedDescription) \n")
             }
