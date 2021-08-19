@@ -9,14 +9,14 @@ import UIKit
 
 class DetailVC: UIViewController {
 
-  
-    @IBOutlet weak var cardTag: UIView!
+    
     @IBOutlet weak var descriptonMovie: UILabel!
-    @IBOutlet weak var rating: UILabel!
+    @IBOutlet weak var movieLanguage: UILabel!
     @IBOutlet weak var relaseDate: UILabel!
+    @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
-    @IBOutlet weak var movieLanguage: UILabel!
+    @IBOutlet weak var cardTag: UIView!
     var movie: Movie?
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -17,31 +17,26 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var movieImage: UIImageView!
     
     private var urlString: String = ""
+    var movie: Movie? {
+        didSet {
+            guard let movie = self.movie else { return }
+            self.movieTitle.text = movie.title
+            self.movieReleaseDate.text = movie.releaseDate.convertDateFormater(movie.releaseDate)
+            self.movieVote.text = String(movie.voteAverage)
+            guard let imageString = movie.posterPath else {return}
+            urlString = KEY.imagePath + imageString
+            self.movieImage.downloadImage(with: urlString)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         setup()
     }
-    
-    func setCellWithValuesOf(_ movie:Movie) {
-        updateUI(movieTitle: movie.title, movieReleaseDate: movie.releaseDate, movieVote: movie.voteAverage, overview: movie.overview, movieImage: movie.posterPath)
-    }
-    // Update the UI
-    private func updateUI(movieTitle: String?, movieReleaseDate: String?, movieVote: Double?, overview: String?, movieImage: String?) {
-        self.movieTitle.text = movieTitle
-        self.movieReleaseDate.text = movieReleaseDate?.convertDateFormater(movieReleaseDate)
-        guard let rating = movieVote else {return}
-        self.movieVote.text = String(rating)
-        guard let imageString = movieImage else {return}
-        urlString = KEY.imagePath + imageString
-        self.movieImage.downloadImage(with: urlString)
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     func setup() {
         movieCardView.layer.cornerRadius = 15

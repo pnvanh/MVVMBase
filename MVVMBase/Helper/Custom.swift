@@ -65,16 +65,10 @@ extension String {
         }
         return fixDate
     }
-    
 
 }
-struct LanguageHelper {
-    static func getLanguageString(code:String) -> String? {
-        let locale: NSLocale? = NSLocale(localeIdentifier: "en")
-        return locale?.displayName(forKey: .identifier, value: code)
+extension UITableViewCell {
+    class var storyboardID : String {
+        return "\(self)"
     }
-}
-struct KEY {
-    static let apiKey = "328c283cd27bd1877d9080ccb1604c91"
-    static let imagePath = "https://image.tmdb.org/t/p/w300"
 }

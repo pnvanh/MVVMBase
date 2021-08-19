@@ -24,7 +24,7 @@ class MovieViewModel {
             }
         }
     }
-    func searchMovies(searchText: String,completion: @escaping () -> ()) {
+    func searchMovies(_ searchText: String,completion: @escaping () -> ()) {
         apiService.searchMovie(apiKey: KEY.apiKey, searchText: searchText) { (result) in
             switch result {
             case .success(let list):
@@ -35,7 +35,7 @@ class MovieViewModel {
             }
         }
     }
-    func fetchDiscoverMoviesPagination(pageNumber: Int,completion: @escaping () -> ()) {
+    func fetchDiscoverMoviesPagination(_ pageNumber: Int,completion: @escaping () -> ()) {
         apiService.getMovie(apiKey: KEY.apiKey, page: pageNumber) { (result) in
             switch result {
             case .success(let list):
@@ -46,17 +46,17 @@ class MovieViewModel {
             }
         }
     }
-    func numberOfRowsInSection(section: Int) -> Int {
+    func numberOfRowsInSection(_ section: Int) -> Int {
         if discoverMovies.count != 0 {
             return discoverMovies.count
         }
         return 0
     }
     
-    func cellForRowAt (indexPath: IndexPath) -> Movie {
+    func cellForRowAt (_ indexPath: IndexPath) -> Movie {
         return discoverMovies[indexPath.row]
     }
-    func countRow(indexPath: IndexPath) -> Int {
+    func countRow(_ indexPath: IndexPath) -> Int {
         return  discoverMovies.count
     }
 }

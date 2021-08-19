@@ -21,8 +21,8 @@
                         <rect key="frame" x="20" y="25" width="365" height="139"/>
                         <color key="backgroundColor" systemColor="placeholderTextColor"/>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-RM-NHI">
-                        <rect key="frame" x="35" y="11.5" width="108" height="141.5"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-RM-NHI">
+                        <rect key="frame" x="35" y="10" width="108" height="144"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="mbP-RM-NHI" secondAttribute="height" multiplier="3/4" id="GIN-AU-Dfk"/>
                         </constraints>
@@ -95,7 +95,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="person" catalog="system" width="128" height="117"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
