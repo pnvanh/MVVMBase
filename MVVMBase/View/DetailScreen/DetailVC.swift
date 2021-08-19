@@ -30,10 +30,10 @@ class DetailVC: UIViewController {
         rating.text = String(self.movie!.voteAverage)
         relaseDate.text = self.movie!.releaseDate.convertDateFormater(movie?.releaseDate)
         descriptonMovie.text = self.movie?.overview
-        movieLanguage.text = "Language: \( LanguageHelper.getLanguageString(code: self.movie!.originalLanguage) ?? "")"
+        movieLanguage.text = "Language: \( LanguageHelper.getLanguageString(self.movie!.originalLanguage) ?? "")"
         guard let imageString = movie?.posterPath else {return}
         let urlString = "https://image.tmdb.org/t/p/w300" + imageString
-        self.movieImage.downloadImage(with: urlString)
+        self.movieImage.downloadImage(urlString)
     }
     @IBAction func bookMovie(_ sender: Any) {
         if let requestUrl = URL(string: "https://www.cathaycineplexes.com.sg/movies/") {

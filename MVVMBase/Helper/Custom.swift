@@ -7,7 +7,7 @@
 import UIKit
 import Kingfisher
 extension UIImageView {
-    func loadImage(urlString: String) {
+    func loadImage(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }
 
         DispatchQueue.global().async { [weak self] in
@@ -27,7 +27,7 @@ extension UIImageView {
         self.layer.masksToBounds = true
     }
     
-    func downloadImage(`with` urlString : String){
+    func downloadImage(_ urlString : String){
         let url = URL(string: urlString)
         let processor = DownsamplingImageProcessor(size: self.bounds.size)
         self.kf.indicatorType = .activity
@@ -66,9 +66,4 @@ extension String {
         return fixDate
     }
 
-}
-extension UITableViewCell {
-    class var storyboardID : String {
-        return "\(self)"
-    }
 }

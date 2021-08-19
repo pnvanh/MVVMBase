@@ -12,7 +12,7 @@ class APIService {
     static let shared = APIService()
     var session = Session()
     let configuration = URLSessionConfiguration.default
-    func getMovie(apiKey: String, page: Int,completed: @escaping(Result<MovieModel, Error>) -> Void) {
+    func getMovie(_ apiKey: String,_ page: Int,completed: @escaping(Result<MovieModel, Error>) -> Void) {
         let urlString = "http://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&page=\(page)"
         guard let url = URL(string: urlString) else {return}
         session.request(url, method: .get).validate().responseJSON { response in
@@ -32,7 +32,7 @@ class APIService {
             }
         }
     }
-    func searchMovie(apiKey: String, searchText: String,completed: @escaping(Result<MovieModel, Error>) -> Void) {
+    func searchMovie(_ apiKey: String,_ searchText: String,completed: @escaping(Result<MovieModel, Error>) -> Void) {
         let urlString = "http://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(searchText)&sort_by=release_date.desc"
         guard let url = URL(string: urlString) else {return}
         session.request(url, method: .get).validate().responseJSON { response in

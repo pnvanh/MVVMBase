@@ -25,7 +25,7 @@ class MovieCell: UITableViewCell {
             self.movieVote.text = String(movie.voteAverage)
             guard let imageString = movie.posterPath else {return}
             urlString = KEY.imagePath + imageString
-            self.movieImage.downloadImage(with: urlString)
+            self.movieImage.downloadImage(urlString)
         }
     }
     
