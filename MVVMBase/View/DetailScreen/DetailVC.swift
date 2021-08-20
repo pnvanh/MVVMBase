@@ -36,20 +36,29 @@ class DetailVC: UIViewController {
             rating.text = String(self.movie?.voteAverage ?? 1)
         }
     }
-    @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var movieImage: UIImageView!{
+        didSet {
+            guard let imageString = movie?.posterPath else { return }
+            let urlString = KEY.imagePath + imageString
+            self.movieImage.downloadImage(urlString)
+        }
+    }
     @IBOutlet weak var cardTag: UIView!
+    
+    struct Define {
+        static let cardRadius:CGFloat = 15
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+    
     func setupUI() {
-        cardTag.layer.cornerRadius = 15
+        cardTag.layer.cornerRadius = Define.cardRadius
         cardTag.clipsToBounds = true
-
-        guard let imageString = movie?.posterPath else { return }
-        let urlString = KEY.imagePath + imageString
-        self.movieImage.downloadImage(urlString)
     }
+    
     @IBAction func bookMovie(_ sender: Any) {
         if let requestUrl = URL(string: KEY.openWatchMovie) {
             UIApplication.shared.open(requestUrl, options: [:], completionHandler: nil)

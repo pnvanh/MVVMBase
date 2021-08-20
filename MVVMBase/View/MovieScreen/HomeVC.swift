@@ -24,11 +24,14 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         setupMovieTableView()
         setupPullRefresh()
+        setupSearchController()
         loadMovide()
     }
     func setupMovieTableView(){
         self.movieTableView.registerNib(cellName: MovieCell.className)
-        self.movieTableView.rowHeight = Define.movieRowHeight
+        self.movieTableView.estimatedRowHeight = 250
+        self.movieTableView.rowHeight = UITableView.automaticDimension
+
         self.movieTableView.dataSource = self
         self.movieTableView.delegate = self
     }
@@ -59,6 +62,7 @@ class HomeVC: UIViewController {
     
 }
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.getNumberOfRows(section)
     }
@@ -90,17 +94,19 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             loadPageView()
         }
     }
+    
     func loadPageView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.viewModel.fetchDiscoverMoviesPagination { _,error in
                 if error != nil {
-                    self.showMessage("Error", "\(error?.localizedDescription ?? "Unkwon error")")
+                    self.showMessage("Error", "\(error?.localizedDescription ?? "Unknow error")")
                 }else{
                     self.movieTableView.reloadData()
                 }
             }
         }
     }
+    
 }
 extension HomeVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

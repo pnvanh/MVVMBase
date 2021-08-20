@@ -21,15 +21,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="537.5"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zx0-nS-X3L">
-                                <rect key="frame" x="30" y="472.5" width="354" height="400"/>
+                                <rect key="frame" x="30" y="472.5" width="354" height="263"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Pju-ER-tot">
-                                        <rect key="frame" x="10" y="10" width="334" height="380"/>
+                                        <rect key="frame" x="10" y="10" width="334" height="243"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2n-Na-rDU">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="55.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRQ-sK-Afu">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRQ-sK-Afu">
                                                         <rect key="frame" x="0.0" y="0.0" width="278.5" height="55.5"/>
                                                         <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="22"/>
                                                         <nil key="textColor"/>
@@ -51,36 +51,37 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55.5" id="4x1-gB-DOk"/>
                                                     <constraint firstItem="QRQ-sK-Afu" firstAttribute="height" relation="lessThanOrEqual" secondItem="r2n-Na-rDU" secondAttribute="height" multiplier="0.1" constant="50" id="9wC-au-bW0"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BCh-eh-D0K">
-                                                <rect key="frame" x="0.0" y="55.5" width="334" height="114"/>
+                                                <rect key="frame" x="0.0" y="55.5" width="334" height="66"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ua-as-vdk">
-                                                        <rect key="frame" x="0.0" y="0.0" width="334" height="38"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ua-as-vdk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="334" height="22"/>
                                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ex-jm-rdr">
-                                                        <rect key="frame" x="0.0" y="38" width="334" height="38"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ex-jm-rdr">
+                                                        <rect key="frame" x="0.0" y="22" width="334" height="22"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ij5-lB-nfE">
-                                                        <rect key="frame" x="0.0" y="76" width="334" height="38"/>
+                                                        <rect key="frame" x="0.0" y="44" width="334" height="22"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xmS-zH-oY8">
-                                                                <rect key="frame" x="0.0" y="-0.5" width="38" height="38"/>
+                                                                <rect key="frame" x="0.0" y="-0.5" width="22" height="22"/>
                                                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="xmS-zH-oY8" secondAttribute="height" multiplier="1:1" id="Dd8-TJ-jTw"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVs-Os-S9a">
-                                                                <rect key="frame" x="53" y="0.0" width="281" height="38"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVs-Os-S9a">
+                                                                <rect key="frame" x="37" y="0.0" width="297" height="22"/>
                                                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -93,8 +94,11 @@
                                                     <constraint firstItem="8ex-jm-rdr" firstAttribute="height" secondItem="BCh-eh-D0K" secondAttribute="height" multiplier="1/3" id="Fv7-IR-crw"/>
                                                 </constraints>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZy-KX-Xfo">
-                                                <rect key="frame" x="0.0" y="169.5" width="334" height="210.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZy-KX-Xfo">
+                                                <rect key="frame" x="0.0" y="121.5" width="334" height="121.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="121.5" id="Me7-Qc-wOh"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -102,7 +106,6 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="uZy-KX-Xfo" firstAttribute="height" relation="greaterThanOrEqual" secondItem="Pju-ER-tot" secondAttribute="height" multiplier="0.5" id="m3Y-7g-qQH"/>
-                                            <constraint firstItem="BCh-eh-D0K" firstAttribute="height" secondItem="Pju-ER-tot" secondAttribute="height" multiplier="0.3" id="xuO-Rd-5Gq"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -112,7 +115,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Pju-ER-tot" secondAttribute="trailing" constant="10" id="FLO-lE-OoO"/>
                                     <constraint firstItem="Pju-ER-tot" firstAttribute="leading" secondItem="Zx0-nS-X3L" secondAttribute="leading" constant="10" id="Sh8-Sv-JMI"/>
                                     <constraint firstAttribute="bottom" secondItem="Pju-ER-tot" secondAttribute="bottom" constant="10" id="rfC-j6-gVs"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="sav-kW-UOZ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="sav-kW-UOZ"/>
                                 </constraints>
                             </view>
                         </subviews>

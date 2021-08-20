@@ -10,6 +10,7 @@ import UIKit
 class MovieCell: UITableViewCell {
 
 
+    @IBOutlet weak var overview: UILabel!
     @IBOutlet weak var movieCardView: UIView!
     @IBOutlet weak var movieVote: UILabel!
     @IBOutlet weak var movieReleaseDate: UILabel!
@@ -26,6 +27,7 @@ class MovieCell: UITableViewCell {
             guard let imageString = movie.posterPath else {return}
             urlString = KEY.imagePath + imageString
             self.movieImage.downloadImage(urlString)
+            self.overview.text = movie.overview
         }
     }
     
@@ -36,6 +38,7 @@ class MovieCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
+        print(movie?.title ?? "m")
         super.setSelected(selected, animated: animated)
     }
     func setup() {
