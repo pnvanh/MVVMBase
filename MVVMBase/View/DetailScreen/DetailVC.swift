@@ -23,17 +23,17 @@ class DetailVC: UIViewController {
     }
     @IBOutlet weak var movieLanguage: UILabel! {
         didSet {
-            movieLanguage.text = "Language: \( LanguageHelper.getLanguageString(self.movie!.originalLanguage) ?? "")"
+            movieLanguage.text = "Language: \( getLanguageString(movie?.originalLanguage ?? "en") ?? "Unknow")"
         }
     }
     @IBOutlet weak var relaseDate: UILabel! {
         didSet {
-            relaseDate.text = self.movie!.releaseDate.convertDateFormater(movie?.releaseDate)
+            relaseDate.text = self.movie?.releaseDate?.convertDateFormater(movie?.releaseDate)
         }
     }
     @IBOutlet weak var rating: UILabel! {
         didSet {
-            rating.text = String(self.movie!.voteAverage)
+            rating.text = String(self.movie?.voteAverage ?? 1)
         }
     }
     @IBOutlet weak var movieImage: UIImageView!
@@ -47,11 +47,11 @@ class DetailVC: UIViewController {
         cardTag.clipsToBounds = true
 
         guard let imageString = movie?.posterPath else { return }
-        let urlString = "https://image.tmdb.org/t/p/w300" + imageString
+        let urlString = KEY.imagePath + imageString
         self.movieImage.downloadImage(urlString)
     }
     @IBAction func bookMovie(_ sender: Any) {
-        if let requestUrl = URL(string: "https://www.cathaycineplexes.com.sg/movies/") {
+        if let requestUrl = URL(string: KEY.openWatchMovie) {
             UIApplication.shared.open(requestUrl, options: [:], completionHandler: nil)
         }
     }

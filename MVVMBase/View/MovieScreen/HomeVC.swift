@@ -10,31 +10,43 @@ import UIKit
 class HomeVC: UIViewController {
     
     @IBOutlet weak var movieTableView: UITableView!
+    
     private var viewModel = MovieViewModel()
-    let searchController = UISearchController(searchResultsController: nil)
-    let refreshControl = UIRefreshControl()
-    var pageNumber = 1
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let refreshControl = UIRefreshControl()
+    
+    struct Define {
+        static let movieRowHeight:CGFloat = 150
+        static let paginationHeight:CGFloat = 44
+    }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupMovieTableView()
+        setupPullRefresh()
         loadMovide()
     }
-    func setupView() {
-        self.title = "Movie"
-    
-        self.movieTableView.register(UINib.init(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "cell")
-        self.movieTableView.rowHeight = KEY.rowHeight
+    func setupMovieTableView(){
+        self.movieTableView.registerNib(cellName: MovieCell.className)
+        self.movieTableView.rowHeight = Define.movieRowHeight
         self.movieTableView.dataSource = self
         self.movieTableView.delegate = self
+    }
+    
+    func setupPullRefresh() {
+        self.title = "Movie"
         //pull to refresh
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.movieTableView.addSubview(refreshControl)
-        
+    }
+    
+    func setupSearchController(){
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
     }
+    
     func loadMovide() {
-        viewModel.fetchDiscoverMovies{
+        viewModel.fetchDiscoverMovies{error in
             self.movieTableView.reloadData()
         }
     }
@@ -48,39 +60,44 @@ class HomeVC: UIViewController {
 }
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection(section)
+        return viewModel.getNumberOfRows(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MovieCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.className, for: indexPath) as? MovieCell else {
             return UITableViewCell()
         }
-        let movie = viewModel.cellForRowAt(indexPath)
+        let movie = viewModel.getCellForRow(indexPath)
         cell.movie = movie
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movie = viewModel.cellForRowAt(indexPath)
-        let storyboard = UIStoryboard(name: "DetailVC", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else { return }
+        let movie = viewModel.getCellForRow(indexPath)
+        let vc = DetailVC.loadFromStoryboard()
         vc.movie = movie
         self.navigationController?.pushViewController(vc, animated: true)
+
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastItem = viewModel.countRow(indexPath) - 1
         if indexPath.row == lastItem {
-            self.pageNumber += 1
             let spinner = UIActivityIndicatorView(style: .medium)
             spinner.startAnimating()
-            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: Define.paginationHeight)
             self.movieTableView.tableFooterView = spinner
             loadPageView()
         }
     }
     func loadPageView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.viewModel.fetchDiscoverMoviesPagination(self.pageNumber) {
-                self.movieTableView.reloadData()
+            self.viewModel.fetchDiscoverMoviesPagination { _,error in
+                if error != nil {
+                    self.showMessage("Error", "\(error?.localizedDescription ?? "Unkwon error")")
+                }else{
+                    self.movieTableView.reloadData()
+                }
             }
         }
     }
@@ -88,7 +105,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
 extension HomeVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
-        viewModel.searchMovies(searchText) {
+        viewModel.searchMovies(searchText) {_ in
             self.movieTableView.reloadData()
         }
     }

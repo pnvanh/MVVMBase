@@ -16,17 +16,17 @@ struct MovieModel: Codable {
 }
 struct Movie: Codable {
     
-    let adult: Bool
+    let adult: Bool?
     let backdropPath: String?
     let genreIDS: [Int]
-    let id: Int
-    let originalLanguage, originalTitle, overview: String
-    let popularity: Double
+    let id: Int?
+    let originalLanguage, originalTitle, overview: String?
+    let popularity: Double?
     let posterPath: String?
-    let releaseDate, title: String
-    let video: Bool
-    let voteAverage: Double
-    let voteCount: Int
+    let releaseDate, title: String?
+    let video: Bool?
+    let voteAverage: Double?
+    let voteCount: Int?
 
    private enum CodingKeys: String, CodingKey {
         case adult

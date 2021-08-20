@@ -21,8 +21,8 @@ class MovieCell: UITableViewCell {
         didSet {
             guard let movie = self.movie else { return }
             self.movieTitle.text = movie.title
-            self.movieReleaseDate.text = movie.releaseDate.convertDateFormater(movie.releaseDate)
-            self.movieVote.text = String(movie.voteAverage)
+            self.movieReleaseDate.text = movie.releaseDate?.convertDateFormater(movie.releaseDate)
+            self.movieVote.text = "\(movie.voteAverage ?? 0)"
             guard let imageString = movie.posterPath else {return}
             urlString = KEY.imagePath + imageString
             self.movieImage.downloadImage(urlString)
