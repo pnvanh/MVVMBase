@@ -36,7 +36,8 @@ class APIService {
     }
     
     func searchMovie(_ searchText: String,completed: @escaping(Result<MovieModel, Error>) -> Void) {
-        let urlString = "\(KEY.apiDiscoveryMoviePath)?api_key=\(KEY.apiKey)&query=\(searchText)&sort_by=release_date.desc"
+        let urlString = "\(KEY.apiDiscoverySearchPath)?api_key=\(KEY.apiKey)&query=\(searchText)&sort_by=release_date.desc"
+        
         guard let url = URL(string: urlString) else {return}
         session.request(url, method: .get).validate().responseJSON { response in
             switch (response.result) {
