@@ -18,6 +18,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var movieImage: UIImageView!
     
     private var urlString: String = ""
+    
     var movie: Movie? {
         didSet {
             guard let movie = self.movie else { return }
@@ -38,9 +39,9 @@ class MovieCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        print(movie?.title ?? "m")
         super.setSelected(selected, animated: animated)
     }
+    
     func setup() {
         movieCardView.layer.cornerRadius = 15
         movieImage.layer.cornerRadius = 10

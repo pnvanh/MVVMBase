@@ -43,7 +43,12 @@ class DetailVC: UIViewController {
             self.movieImage.downloadImage(urlString)
         }
     }
-    @IBOutlet weak var cardTag: UIView!
+    @IBOutlet weak var cardTag: UIView! {
+        didSet {
+            cardTag.layer.cornerRadius = Define.cardRadius
+            cardTag.clipsToBounds = true
+        }
+    }
     
     struct Define {
         static let cardRadius:CGFloat = 15
@@ -51,14 +56,8 @@ class DetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
     }
-    
-    func setupUI() {
-        cardTag.layer.cornerRadius = Define.cardRadius
-        cardTag.clipsToBounds = true
-    }
-    
+
     @IBAction func bookMovie(_ sender: Any) {
         if let requestUrl = URL(string: KEY.openWatchMovie) {
             UIApplication.shared.open(requestUrl, options: [:], completionHandler: nil)

@@ -14,5 +14,4 @@ struct KEY {
     static let apiDiscoverySearchPath = "http://api.themoviedb.org/3/search/movie"
     static let openWatchMovie = "https://www.cathaycineplexes.com.sg/movies/"
 }
-//http://api.themoviedb.org/3/discover/movie?api_key=328c283cd27bd1877d9080ccb1604c91&1&page=1
-//http://api.themoviedb.org/3/discover/movie?api_key=328c283cd27bd1877d9080ccb1604c91?page=1
+

@@ -16,7 +16,7 @@ class HomeVC: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     struct Define {
-        static let movieRowHeight:CGFloat = 150
+        static let movieRowHeight:CGFloat = 250
         static let paginationHeight:CGFloat = 44
     }
   
@@ -29,7 +29,7 @@ class HomeVC: UIViewController {
     }
     func setupMovieTableView(){
         self.movieTableView.registerNib(cellName: MovieCell.className)
-        self.movieTableView.estimatedRowHeight = 250
+        self.movieTableView.estimatedRowHeight = Define.movieRowHeight
         self.movieTableView.rowHeight = UITableView.automaticDimension
 
         self.movieTableView.dataSource = self
@@ -55,7 +55,6 @@ class HomeVC: UIViewController {
     }
     
     @objc func refresh(refreshControl: UIRefreshControl) {
-        print("refresh!")
         loadMovide()
         refreshControl.endRefreshing()
     }
@@ -108,6 +107,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
 extension HomeVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
