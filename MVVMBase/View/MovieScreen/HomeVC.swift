@@ -9,7 +9,7 @@ import UIKit
 
 class HomeVC: UIViewController {
     
-    @IBOutlet weak var movieTableView: UITableView!
+    @IBOutlet fileprivate weak var movieTableView: UITableView!
     
     private var viewModel = MovieViewModel()
     private let searchController = UISearchController(searchResultsController: nil)
@@ -60,6 +60,8 @@ class HomeVC: UIViewController {
     }
     
 }
+
+//MARK: — Extension TableViewDelegate&Datasource
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,7 +98,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func loadPageView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.viewModel.fetchDiscoverMoviesPagination { _,error in
+            self.viewModel.fetchDiscoverMoviesPagination { error in
                 if error != nil {
                     self.showMessage("Error", "\(error?.localizedDescription ?? "Unknow error")")
                 }else{
@@ -108,6 +110,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: — Extension SearchResult
 extension HomeVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }

@@ -40,16 +40,16 @@ class MovieViewModel {
         }
     }
     
-    func fetchDiscoverMoviesPagination(completion: @escaping (_ listView: Any?, _ error: Error?) -> ()) {
+    func fetchDiscoverMoviesPagination(completion: @escaping (_ error: Error?) -> ()) {
         self.pageNumber += 1
         apiService.getMovie(pageNumber) { (result) in
             switch result {
             case .success(let list):
                 self.discoverMovies.append(contentsOf: list.movies)
-                completion(nil, nil)
+                completion(nil)
             case .failure(let error):
                 print("Error processing json data: \(error)")
-                completion(nil, error)
+                completion(error)
             }
         }
         

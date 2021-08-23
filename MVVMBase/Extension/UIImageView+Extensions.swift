@@ -21,33 +21,27 @@ extension UIImageView {
         }
     }
     
-    func makeRound() {
-        let radius = self.frame.width / 2
-        self.layer.cornerRadius = radius
-        self.layer.masksToBounds = true
-    }
-    
     func downloadImage(_ urlString : String){
         let url = URL(string: urlString)
         let processor = DownsamplingImageProcessor(size: self.bounds.size)
         self.kf.indicatorType = .activity
         self.kf.setImage(
             with: url,
-            placeholder: UIImage(named: "placeholderImage"),
+            placeholder: UIImage(named: "placeholderimage"),
             options: [
                 .processor(processor),
                 .scaleFactor(UIScreen.main.scale),
                 .transition(.fade(1)),
                 .cacheOriginalImage
             ])
-        {
-            result in
-            switch result {
-            case .success(let value):
-                print("Task done for: \(value.source.url?.absoluteString ?? "")")
-            case .failure(let error):
-                print("Job failed: \(error.localizedDescription)")
-            }
-        }
+//        {
+//            result in
+//            switch result {
+//            case .success(let value):
+//                print("Task done for: \(value.source.url?.absoluteString ?? "")")
+//            case .failure(let error):
+//                print("Job failed: \(error.localizedDescription)")
+//            }
+//        }
     }
 }
