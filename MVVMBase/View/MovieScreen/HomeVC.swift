@@ -30,8 +30,6 @@ class HomeVC: UIViewController {
     func setupMovieTableView(){
         self.movieTableView.registerNib(cellName: MovieCell.className)
         self.movieTableView.estimatedRowHeight = Define.movieRowHeight
-        self.movieTableView.rowHeight = UITableView.automaticDimension
-
         self.movieTableView.dataSource = self
         self.movieTableView.delegate = self
     }
@@ -59,9 +57,15 @@ class HomeVC: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    func gotoDetailPage(_ movie: Movie) {
+        let vc = DetailVC.loadFromStoryboard()
+        vc.movie = movie
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
-//MARK: — Extension TableViewDelegate&Datasource
+//MARK: — Extension TableViewDelegate & TableViewDatasource
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,9 +73,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.className, for: indexPath) as? MovieCell else {
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withClass: MovieCell.self, for: indexPath)
         let movie = viewModel.getCellForRow(indexPath)
         cell.movie = movie
         return cell
@@ -79,10 +81,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = viewModel.getCellForRow(indexPath)
-        let vc = DetailVC.loadFromStoryboard()
-        vc.movie = movie
-        self.navigationController?.pushViewController(vc, animated: true)
-
+        gotoDetailPage(movie)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

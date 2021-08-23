@@ -10,12 +10,12 @@ import UIKit
 class MovieCell: UITableViewCell {
 
 
-    @IBOutlet weak var overview: UILabel!
-    @IBOutlet weak var movieCardView: UIView!
-    @IBOutlet weak var movieVote: UILabel!
-    @IBOutlet weak var movieReleaseDate: UILabel!
-    @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet fileprivate weak var overview: UILabel!
+    @IBOutlet fileprivate weak var movieCardView: UIView!
+    @IBOutlet fileprivate weak var movieVote: UILabel!
+    @IBOutlet fileprivate weak var movieReleaseDate: UILabel!
+    @IBOutlet fileprivate weak var movieTitle: UILabel!
+    @IBOutlet fileprivate weak var movieImage: UIImageView!
     
     private var urlString: String = ""
     

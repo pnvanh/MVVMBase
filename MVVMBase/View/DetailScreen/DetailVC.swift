@@ -30,6 +30,7 @@ class DetailVC: UIViewController {
     }
     
     func setupUI() {
+        self.navigationController?.navigationBar.tintColor = .white
         cardTag.layer.cornerRadius = Define.cardRadius
         cardTag.clipsToBounds = true
     }
@@ -37,11 +38,10 @@ class DetailVC: UIViewController {
     func binding(){
         guard let imageString = movie?.posterPath else { return }
         let urlString = KEY.imagePath + imageString
-        self.movieImage.downloadImage(urlString)
-        
-        rating.text = String(self.movie?.voteAverage ?? 0)
-        relaseDate.text = self.movie?.releaseDate?.convertDateFormater(movie?.releaseDate)
-        movieLanguage.text = "Language: \( getLanguageString(movie?.originalLanguage ?? "") ?? "Unknow")"
+        movieImage.downloadImage(urlString)
+        rating.text = String(movie?.voteAverage ?? 0)
+        relaseDate.text = movie?.releaseDate?.convertDateFormater(movie?.releaseDate)
+        movieLanguage.text = "Language: \(getLanguageString(movie?.originalLanguage ?? "") ?? "Unknow")"
         descriptonMovie.text = movie?.overview
         movieTitle.text = movie?.title
     }
